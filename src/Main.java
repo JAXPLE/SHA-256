@@ -9,13 +9,13 @@ class Encryption {
         StringBuilder hexString = new StringBuilder();
 
         byte[] firstHash = inputPassWord.getBytes(StandardCharsets.UTF_8);
-//        printArray("암호 > 바이트화", firstHash);
+        printArray("원문 > 바이트", firstHash);
 
         byte[] hash = messageDigest.digest(firstHash);
+        printArray("바이트 > 해쉬", hash);
 
         for (byte b : hash)
             hexString.append(String.format("%02X", b));
-//        printArray("result", hexString);
 
         return hexString.toString();
     }
@@ -26,18 +26,7 @@ class Encryption {
             if ((i + 1) % 5 == 0)
                 System.out.println();
         }
-        System.out.println();
-        System.out.println();
-    }
-
-    public void printArray(String tag, StringBuilder hash) {
-        for (int i = 0; i < hash.length(); i++) {
-            System.out.printf("%s\t", hash.charAt(i));
-            if ((i + 1) % 6 == 0)
-                System.out.println();
-        }
-        System.out.println();
-        System.out.println();
+        System.out.println("\n");
     }
 }
 
@@ -45,8 +34,9 @@ public class Main {
     public static void main(String[] args) throws NoSuchAlgorithmException {
         Scanner scan = new Scanner(System.in);
         Encryption encryption = new Encryption();
+        boolean isRun = true;
 
-        while (true) {
+        while (isRun) {
             System.out.print("input a = ");
             String firstName = scan.next();
             String encryptionFirstName = encryption.getHash(firstName);
@@ -58,7 +48,8 @@ public class Main {
             System.out.println("encryptionFirstName  > " +encryptionFirstName);
             System.out.println("encryptionSecondName > " +encryptionSecondName);
 
-            System.out.println(encryptionFirstName.equals(encryptionSecondName));
+            isRun = encryptionFirstName.equals(encryptionSecondName);
+            System.out.println("\nresult > " + isRun);
         }
     }
 }
