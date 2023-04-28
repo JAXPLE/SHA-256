@@ -46,9 +46,7 @@ public class Main {
         Scanner scan = new Scanner(System.in);
         Encryption encryption = new Encryption();
 
-        System.out.println("코드체크");
-
-        /*while (true) {
+        while (true) {
             System.out.print("input a = ");
             String firstName = scan.next();
             String encryptionFirstName = encryption.getHash(firstName);
@@ -61,6 +59,6 @@ public class Main {
             System.out.println("encryptionSecondName > " +encryptionSecondName);
 
             System.out.println(encryptionFirstName.equals(encryptionSecondName));
-        }*/
+        }
     }
 }
